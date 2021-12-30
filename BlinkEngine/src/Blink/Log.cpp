@@ -13,7 +13,7 @@ namespace Blink
 		s_CoreLogger->set_level(spdlog::level::trace);
 
 		s_ClentLogger = spdlog::stdout_color_mt("APP");
-		s_CoreLogger->set_level(spdlog::level::trace);
+		s_CoreLogger->set_level(spdlog::level::trace); 
 	}
 
 }
