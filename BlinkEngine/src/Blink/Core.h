@@ -10,3 +10,6 @@
 #else
 	#error Blink Engine is currently only supports Windows
 #endif
+
+// Bit shift macro
+#define BIT(x) (1 << x)

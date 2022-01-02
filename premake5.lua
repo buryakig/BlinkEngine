@@ -26,7 +26,8 @@ project "BlinkEngine"
 
 	includedirs
 	{
-		"%{prj.name}/submodules/spdlog/include"
+		"%{prj.name}/submodules/spdlog/include",
+		"%{prj.name}/src"
 	}
 
 	filter "system:windows"
