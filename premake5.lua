@@ -18,6 +18,9 @@ project "BlinkEngine"
 	targetdir("bin/build/" .. outputdir .. "/%{prj.name}")
 	objdir("bin/int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "blinkpch.h"
+	pchsource "BlinkEngine/src/blinkpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",

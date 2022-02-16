@@ -1,4 +1,5 @@
 #pragma once
+#include "blinkpch.h"
 #include "Core.h"
 
 namespace Blink

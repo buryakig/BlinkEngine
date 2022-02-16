@@ -1,8 +1,8 @@
+#include "blinkpch.h"
 #include "Application.h"
 #include "Blink/Event/Event.h"
 #include "Blink/Event/ApplicationEvent.h"
 #include "Blink/Log.h"
-#include <iostream>
 
 namespace Blink
 {

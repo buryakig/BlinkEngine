@@ -1,7 +1,7 @@
 #pragma once
 // For use by Blink Applications
 
-#include <iostream>
+#include "blinkpch.h"
 #include "Blink/Application.h"
 #include "Blink/Log.h"
 

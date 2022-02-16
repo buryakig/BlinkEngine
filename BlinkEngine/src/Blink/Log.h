@@ -1,6 +1,10 @@
 #pragma once
+
+#include <memory>
+
 #include "Core.h"
 #include "spdlog/spdlog.h"
+#include "blinkpch.h"
 #include "spdlog/fmt/ostr.h"
 
 namespace Blink
