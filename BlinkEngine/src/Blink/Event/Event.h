@@ -3,6 +3,7 @@
 #include "Blink/Core.h"
 
 #include <string>
+#include <sstream>
 #include <functional>
 
 namespace Blink
@@ -25,24 +26,56 @@ namespace Blink
 		EventCategoryInput			= BIT(1),
 		EventCategoryKeyboard		= BIT(2),
 		EventCategoryMouse			= BIT(3),
-		EventCategoryMouseBitton	= BIT(4)
+		EventCategoryMouseButton	= BIT(4)
 	};
+
+	#define EVENT_CLASS_TYPE(type)	static EventType GetStaticType() {return EventType::##type;}\
+									virtual EventType GetEventType() const override {return GetStaticType();}\
+									virtual const char* GetName() const override {return #type;}
+
+	#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override {return category;}
 
 	class BLINK_API Event
 	{
-		friend class EventDispatcher;
 	public:
+		//virtual ~Event() = default;
+
+		bool Handled = false;
+
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
 		virtual std::string ToString() const { return GetName(); }
 
-		inline bool IsInCatagory(EventCategory category)
+		bool IsInCategory(EventCategory category)
 		{
 			return GetCategoryFlags() & category;
 		}
-
-	protected:
-		bool m_Handled = false;
 	};
+
+	class EventDispatcher
+	{
+		template<typename T>
+		using EventFn = std::function<bool(T&)>;
+	public:
+		EventDispatcher(Event& event)
+			: m_Event(event) {}
+
+		template<typename T>
+		bool Dispatch(EventFn<T> func)
+		{
+			if (m_Event.GetEventType() == T::GetStaticType()) 
+			{
+				m_Event.m_Handled = func(*(T*)&m_Event);
+			}
+		}
+
+	private: 
+		Event& m_Event;
+	};
+
+	inline std::ostream& operator<<(std::ostream& os, const Event& e)
+	{
+		return os << e.ToString();
+	}
 }
