@@ -8,6 +8,7 @@ namespace Blink
 {
 	Blink::Application::Application()
 	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Blink::Application::~Application()
@@ -15,9 +16,9 @@ namespace Blink
 	}
 	void Application::Run()
 	{
-		WindowResizeEvent e(1280, 720);
-		BLINK_CORE_TRACE(e);
-		std::cout << ">>> Application::Run() is called" << std::endl;
-		while (true);
+		while (m_Running)
+		{
+			m_Window->OnUpdate();
+		}
 	}
 }
