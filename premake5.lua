@@ -10,6 +10,12 @@ workspace "BlinkEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "BlinkEngine/submodules/GLFW/include"
+
+include "BlinkEngine/submodules/GLFW"
+
 project "BlinkEngine"
 	location"BlinkEngine"
 	kind "SharedLib"
@@ -30,7 +36,14 @@ project "BlinkEngine"
 	includedirs
 	{
 		"%{prj.name}/submodules/spdlog/include",
-		"%{prj.name}/src"
+		"%{prj.name}/src",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
