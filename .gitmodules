@@ -1,6 +1,6 @@
 [submodule "BlinkEngine/submodules/spdlog"]
 	path = BlinkEngine/submodules/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "BlinkEngine/submodules/GLFW"]
-	path = BlinkEngine/submodules/GLFW
+[submodule "BlinkEngine/submodules/GLFWE"]
+	path = BlinkEngine/submodules/GLFWE
 	url = https://github.com/buryakig/glfw
