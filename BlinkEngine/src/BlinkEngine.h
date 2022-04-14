@@ -3,6 +3,7 @@
 
 #include "blinkpch.h"
 #include "Blink/Application.h"
+#include "Blink/Layer.h"
 #include "Blink/Log.h"
 
 //----------------------------Entry Point---------------------------------

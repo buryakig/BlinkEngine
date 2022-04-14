@@ -64,14 +64,17 @@ project "BlinkEngine"
 
 	filter "configurations:Debug"
 		defines "BLINK_DEBUG"
+		buildoptions "/MDp"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "BLINK_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "BLINK_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 project "Sandbox"
@@ -111,12 +114,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "BLINK_DEBUG"
+		buildoptions "/MDp"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "BLINK_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "BLINK_DIST"
+		buildoptions "/MD"
 		optimize "On"
