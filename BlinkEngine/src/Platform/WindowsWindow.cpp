@@ -6,6 +6,8 @@
 #include "Blink/Event/KeyEvent.h"
 #include "Blink/Event/ApplicationEvent.h"
 
+#include "glad/glad.h"
+
 namespace Blink
 {
 	static bool s_GLFWInitialized = false;
@@ -65,6 +67,8 @@ namespace Blink
 
 		m_Window = glfwCreateWindow(props.Width, props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		BLINK_CORE_ASSERT(status, "Failed to initialize Glad!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

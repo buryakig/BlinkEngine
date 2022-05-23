@@ -1,5 +1,6 @@
 #pragma once
 #include "Blink/Window.h"
+
 #include "GLFW/glfw3.h"
 
 namespace Blink

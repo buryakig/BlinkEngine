@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "BlinkEngine/submodules/GLFW/include"
+IncludeDir["Glad"] = "BlinkEngine/submodules/Glad/include"
 
 include "BlinkEngine/submodules/GLFW"
+include "BlinkEngine/submodules/Glad"
 
 project "BlinkEngine"
 	location"BlinkEngine"
@@ -37,12 +39,14 @@ project "BlinkEngine"
 	{
 		"%{prj.name}/submodules/spdlog/include",
 		"%{prj.name}/src",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -54,7 +58,8 @@ project "BlinkEngine"
 		defines
 		{
 			"BLINK_PLATFORM_WINDOWS",
-			"BLINK_BUILD_DLL"
+			"BLINK_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands

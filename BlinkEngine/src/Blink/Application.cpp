@@ -3,7 +3,7 @@
 #include "Blink/Log.h"
 
 #include "Blink/Event/Event.h"
-#include "GLFW/glfw3.h"
+#include "glad/glad.h"
 
 namespace Blink
 {
