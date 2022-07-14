@@ -14,9 +14,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "BlinkEngine/submodules/GLFW/include"
 IncludeDir["Glad"] = "BlinkEngine/submodules/Glad/include"
+IncludeDir["ImGui"] = "BlinkEngine/submodules/imgui"
 
 include "BlinkEngine/submodules/GLFW"
 include "BlinkEngine/submodules/Glad"
+include "BlinkEngine/submodules/imgui"
 
 project "BlinkEngine"
 	location"BlinkEngine"
@@ -40,13 +42,15 @@ project "BlinkEngine"
 		"%{prj.name}/submodules/spdlog/include",
 		"%{prj.name}/src",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 

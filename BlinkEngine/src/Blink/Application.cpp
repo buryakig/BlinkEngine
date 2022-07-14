@@ -7,12 +7,16 @@
 
 namespace Blink
 {
-#define BIND_EVENT_FUNCTION(x)	std::bind(&x, this, std::placeholders::_1)
+
+	Application* Application::s_Instance = nullptr;
 
 	Blink::Application::Application()
 	{
+		BLINK_ASSERT(!s_Instance, "Application already exists!")
+		s_Instance = this;
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FUNCTION(Application::OnEvent));
+		m_Window->SetEventCallback(BLINK_BIND_EVENT_FUNCTION(Application::OnEvent));
 	}
 
 	Blink::Application::~Application()
@@ -23,7 +27,7 @@ namespace Blink
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FUNCTION(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowCloseEvent>(BLINK_BIND_EVENT_FUNCTION(Application::OnWindowClose));
 
 		BLINK_CORE_TRACE("{0}", e);
 		
@@ -39,11 +43,13 @@ namespace Blink
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
 		m_LayerStack.PushOverlay(layer);
+		layer->OnAttach();
 	}
 
 	void Application::Run()	

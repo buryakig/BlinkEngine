@@ -2,8 +2,8 @@ project "Glad"
 kind "StaticLib"
 language "C"
 
-targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+targetdir ("bin/build/" .. outputdir .. "/%{prj.name}")
+objdir ("bin/int/" .. outputdir .. "/%{prj.name}")
 
 files
 {

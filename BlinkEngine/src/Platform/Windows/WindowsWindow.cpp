@@ -147,6 +147,13 @@ namespace Blink
 				data.EventCallback(event);
 			});
 
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int charCode)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				KeyTypedEvent event(charCode);
+				data.EventCallback(event);
+			});
+
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos) 
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
